@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Equipment Survey</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
@@ -28,21 +31,17 @@
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body { font-family: 'Source Sans 3', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; }
 
-  /* HEADER */
   .app-header { background: var(--navy); border-bottom: 3px solid var(--accent); padding: 12px 16px; position: sticky; top: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; }
   .app-header h1 { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #ffffff; }
   .header-meta { font-family: 'Rajdhani', sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); letter-spacing: 1px; }
 
-  /* SCREENS */
   .screen { display: none; }
   .screen.active { display: block; }
   .container { max-width: 700px; margin: 0 auto; padding: 18px 14px 100px; }
 
-  /* SURVEY HEADER CARD */
   .survey-header-card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; padding: 16px; margin-bottom: 14px; }
   .survey-header-card h2 { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--navy); margin-bottom: 12px; }
 
-  /* FIELD GRID */
   .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .field-grid.cols-1 { grid-template-columns: 1fr; }
   .field-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
@@ -56,18 +55,17 @@
     font-family: 'Source Sans 3', sans-serif; font-size: 15px; padding: 10px 12px; width: 100%;
     transition: border-color 0.15s; -webkit-appearance: none; appearance: none;
   }
-  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7585' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7a93' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232,80,10,0.12); }
   select option { background: #ffffff; color: #1a2032; }
   textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
 
-  /* SECTION CARD */
   .section-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
   .section-title { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--navy); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
-  /* EQUIPMENT LIST */
   .eq-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-  .eq-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; transition: border-color 0.15s, box-shadow 0.15s; } .eq-card:hover { border-color: var(--navy); box-shadow: 0 2px 8px rgba(26,47,78,0.1); }
+  .eq-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; transition: border-color 0.15s, box-shadow 0.15s; }
+  .eq-card:hover { border-color: var(--navy); box-shadow: 0 2px 8px rgba(26,47,78,0.1); }
   .eq-type-badge { flex-shrink: 0; width: 46px; height: 46px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Rajdhani', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
   .badge-cooler { background: var(--tag-cooler-bg); color: var(--tag-cooler); border: 1px solid var(--tag-cooler); }
   .badge-freezer { background: var(--tag-freezer-bg); color: var(--tag-freezer); border: 1px solid var(--tag-freezer); }
@@ -80,22 +78,19 @@
   .btn-icon:hover { border-color: var(--navy); color: var(--navy); }
   .btn-icon.danger:hover { border-color: var(--red); color: var(--red); }
 
-  /* EMPTY STATE */
   .empty-state { text-align: center; padding: 48px 20px; color: var(--muted); background: var(--surface); border: 1px dashed var(--border); border-radius: 8px; }
   .empty-state .icon { font-size: 36px; margin-bottom: 10px; }
   .empty-state p { font-size: 14px; line-height: 1.6; }
 
-  /* BUTTONS */
   .btn { display: block; width: 100%; padding: 13px 20px; border-radius: 8px; font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; text-align: center; transition: all 0.15s; border: none; }
   .btn + .btn { margin-top: 8px; }
-  .btn-primary { background: var(--accent); color: #111; }
-  .btn-primary:hover { background: #ffc233; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-hover); }
   .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
   .btn-ghost:hover { border-color: var(--navy); color: var(--navy); }
   .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
-  .btn-outline:hover { background: var(--accent); color: #111; }
+  .btn-outline:hover { background: var(--accent); color: #fff; }
 
-  /* PHOTOS */
   .photo-label-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
   .photo-label-row input { flex: 1; padding: 8px 10px; font-size: 13px; }
   .photo-add-trigger { flex-shrink: 0; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--muted); padding: 0 14px; height: 40px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap; transition: all 0.15s; }
@@ -111,7 +106,6 @@
   .photo-add-slot .plus { font-size: 22px; }
   .photo-count-msg { font-size: 12px; color: var(--muted); margin-top: 6px; }
 
-  /* SUMMARY */
   .summary-job-header { background: var(--navy); border: 1px solid var(--navy); border-left: 4px solid var(--accent); border-radius: 8px; padding: 18px 20px; margin-bottom: 20px; }
   .summary-job-header h2 { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: #ffffff; letter-spacing: 1px; margin-bottom: 12px; }
   .summary-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; }
@@ -135,7 +129,6 @@
   .photo-summary-item img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); display: block; }
   .photo-summary-item .ps-label { font-size: 10px; color: var(--muted); margin-top: 3px; text-align: center; }
 
-  /* PRINT */
   @media print {
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     body { background: #fff; color: #1a2032; }
@@ -161,6 +154,7 @@
     .badge-freezer { background: #ddeaf8; color: #1a4a8f; border-color: #1a4a8f; }
     .badge-hvac { background: #fdeede; color: #b83d08; border-color: #b83d08; }
     .photo-summary-grid { grid-template-columns: repeat(4, 1fr); }
+    .btn { display: none !important; }
   }
 </style>
 </head>
@@ -171,52 +165,36 @@
   <span class="header-meta" id="hdr-meta">0 units</span>
 </div>
 
-<!-- ══ LIST SCREEN ══ -->
+<!-- LIST -->
 <div id="screen-list" class="screen active">
   <div class="container">
-
     <div class="survey-header-card">
       <h2>Survey Info</h2>
       <div class="field-grid">
-        <div class="field">
-          <label>Job Name</label>
-          <input type="text" id="h-job" placeholder="e.g. Smith's Grocery">
-        </div>
-        <div class="field">
-          <label>Date</label>
-          <input type="date" id="h-date">
-        </div>
-        <div class="field">
-          <label>Service Company</label>
-          <input type="text" id="h-company" placeholder="Company name">
-        </div>
-        <div class="field">
-          <label>Audited By</label>
-          <input type="text" id="h-auditor" placeholder="Full name">
-        </div>
+        <div class="field"><label>Job Name</label><input type="text" id="h-job" placeholder="e.g. Smith's Grocery"></div>
+        <div class="field"><label>Date</label><input type="date" id="h-date"></div>
+        <div class="field"><label>Service Company</label><input type="text" id="h-company" placeholder="Company name"></div>
+        <div class="field"><label>Audited By</label><input type="text" id="h-auditor" placeholder="Full name"></div>
       </div>
     </div>
-
     <div class="survey-header-card">
       <h2>General Comments</h2>
       <div class="field">
         <textarea id="h-notes" placeholder="General site observations, conditions, access notes..." rows="3"></textarea>
       </div>
     </div>
-
     <div id="eq-list" class="eq-list">
       <div class="empty-state">
         <div class="icon">🔩</div>
         <p>No equipment logged yet.<br>Tap <strong>Add Equipment</strong> to begin.</p>
       </div>
     </div>
-
     <button class="btn btn-primary" onclick="showForm(-1)">+ Add Equipment</button>
     <button class="btn btn-outline" onclick="showSummary()">View / Print Summary</button>
   </div>
 </div>
 
-<!-- ══ FORM SCREEN ══ -->
+<!-- FORM -->
 <div id="screen-form" class="screen">
   <div class="container">
 
@@ -232,10 +210,7 @@
             <option value="HVAC">HVAC</option>
           </select>
         </div>
-        <div class="field">
-          <label>Unit Name / Tag *</label>
-          <input type="text" id="f-name" placeholder="e.g. Walk-in Cooler #1">
-        </div>
+        <div class="field"><label>Unit Name / Tag *</label><input type="text" id="f-name" placeholder="e.g. Walk-in Cooler #1"></div>
       </div>
       <div class="field-grid" style="margin-top:10px;">
         <div class="field">
@@ -246,11 +221,7 @@
             <option value="Roof">Roof</option>
           </select>
         </div>
-        <div class="field">
-          <label>Zone / Area</label>
-          <input type="text" id="f-zone" placeholder="e.g. Produce Room">
-        </div>
-
+        <div class="field"><label>Zone / Area</label><input type="text" id="f-zone" placeholder="e.g. Produce Room"></div>
       </div>
     </div>
 
@@ -260,8 +231,23 @@
         <div class="field"><label>Brand</label><input type="text" id="f-comp-brand" placeholder="e.g. Copeland"></div>
         <div class="field"><label>Model</label><input type="text" id="f-comp-model" placeholder="e.g. ZB45KCE"></div>
         <div class="field"><label>HP</label><input type="text" id="f-comp-hp" placeholder="e.g. 3.5"></div>
-        <div class="field"><label>Type</label><select id="f-comp-type"><option value="">-- Select --</option><option>Recip</option><option>Scroll</option><option>Screw</option></select></div>
-        <div class="field"><label>Refrigerant</label><select id="f-refrigerant"><option value="">-- Select --</option><option>Freon</option><option>Ammonia</option></select></div>
+        <div class="field">
+          <label>Type</label>
+          <select id="f-comp-type">
+            <option value="">-- Select --</option>
+            <option>Recip</option>
+            <option>Scroll</option>
+            <option>Screw</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Refrigerant</label>
+          <select id="f-refrigerant">
+            <option value="">-- Select --</option>
+            <option>Freon</option>
+            <option>Ammonia</option>
+          </select>
+        </div>
         <div class="field"><label>Refrigerant #</label><input type="text" id="f-refrigerant-num" placeholder="e.g. R-404A"></div>
       </div>
     </div>
@@ -276,10 +262,6 @@
             <option>115V</option><option>208V</option><option>230V</option><option>460V</option><option>480V</option>
           </select>
         </div>
-
-
-      </div>
-      <div class="field-grid" style="margin-top:10px;">
         <div class="field"><label>RLA (Amps)</label><input type="text" inputmode="decimal" id="f-rla" placeholder="e.g. 18.5"></div>
         <div class="field"><label>LRA (Amps)</label><input type="text" inputmode="decimal" id="f-lra" placeholder="e.g. 112"></div>
       </div>
@@ -298,28 +280,17 @@
         <input type="text" id="photo-label-input" placeholder="Label (e.g. Nameplate, Overview, Wiring...)">
         <button class="photo-add-trigger" onclick="triggerPhoto()">📷 Add</button>
       </div>
-      <input type="file" id="photo-input" accept="image/*" capture="environment" multiple onchange="handlePhotos(event)">
+      <input type="file" id="photo-input" accept="image/*" capture="environment" multiple onchange="handlePhotos(event)" style="display:none">
       <div class="photo-grid" id="photo-grid"></div>
       <div class="photo-count-msg" id="photo-count-msg"></div>
     </div>
-    <div class="section-card">
-      <div class="section-title">Photo of Possible Install Location</div>
-      <div class="photo-label-row">
-        <input type="text" id="install-photo-label-input" placeholder="Label (e.g. North wall, Rooftop corner...)">
-        <button class="photo-add-trigger" onclick="triggerInstallPhoto()">📷 Add</button>
-      </div>
-      <input type="file" id="install-photo-input" accept="image/*" capture="environment" onchange="handleInstallPhoto(event)">
-      <div class="photo-grid" id="install-photo-grid"></div>
-      <div class="photo-count-msg" id="install-photo-count-msg"></div>
-    </div>
-
 
     <button class="btn btn-primary" onclick="saveEquipment()">Save Equipment</button>
     <button class="btn btn-ghost" onclick="showList()">Cancel</button>
   </div>
 </div>
 
-<!-- ══ SUMMARY SCREEN ══ -->
+<!-- SUMMARY -->
 <div id="screen-summary" class="screen">
   <div class="container">
     <div id="summary-content"></div>
@@ -332,12 +303,11 @@
 let equipment = [];
 let surveyHeader = { job:'', date:'', company:'', auditor:'', notes:'' };
 let formPhotos = [];
-
 let editIndex = -1;
+let photosLoading = 0;
 
-// INIT
 (function() {
-  const saved = localStorage.getItem('eq_survey_v3');
+  const saved = localStorage.getItem('eq_survey_v4');
   if (saved) {
     try { const d = JSON.parse(saved); equipment = d.equipment || []; surveyHeader = d.header || surveyHeader; } catch(e) {}
   }
@@ -348,7 +318,7 @@ let editIndex = -1;
 
 function persist() {
   saveHeader();
-  localStorage.setItem('eq_survey_v3', JSON.stringify({ equipment, header: surveyHeader }));
+  localStorage.setItem('eq_survey_v4', JSON.stringify({ equipment, header: surveyHeader }));
   document.getElementById('hdr-meta').textContent = equipment.length + ' unit' + (equipment.length !== 1 ? 's' : '');
 }
 
@@ -372,7 +342,7 @@ function saveHeader() {
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
 
 function showList() { loadHeader(); renderList(); showScreen('screen-list'); }
@@ -384,55 +354,54 @@ function typeIcon(t) { return t==='Cooler'?'❄':t==='Freezer'?'🧊':'💨'; }
 function renderList() {
   const c = document.getElementById('eq-list');
   if (!equipment.length) {
-    c.innerHTML = `<div class="empty-state"><div class="icon">🔩</div><p>No equipment logged yet.<br>Tap <strong>Add Equipment</strong> to begin.</p></div>`;
+    c.innerHTML = '<div class="empty-state"><div class="icon">🔩</div><p>No equipment logged yet.<br>Tap <strong>Add Equipment</strong> to begin.</p></div>';
     return;
   }
-  c.innerHTML = equipment.map((eq,i) => `
-    <div class="eq-card">
-      <div class="eq-type-badge ${badgeClass(eq.type)}">
-        <span style="font-size:18px">${typeIcon(eq.type)}</span>
-        <span>${eq.type||'?'}</span>
-      </div>
-      <div class="eq-card-info">
-        <div class="eq-card-name">${h(eq.name||'Unnamed Unit')}</div>
-        <div class="eq-card-sub">${[eq.location,eq.zone].filter(Boolean).map(h).join(' · ')||'No location'} ${eq.photos&&eq.photos.length?'· 📷 '+eq.photos.length:''}</div>
-      </div>
-      <div class="eq-card-actions">
-        <button class="btn-icon" onclick="showForm(${i})">✏️</button>
-        <button class="btn-icon danger" onclick="delEq(${i})">🗑</button>
-      </div>
-    </div>`).join('');
+  c.innerHTML = equipment.map((eq, i) =>
+    '<div class="eq-card">' +
+      '<div class="eq-type-badge ' + badgeClass(eq.type) + '">' +
+        '<span style="font-size:18px">' + typeIcon(eq.type) + '</span>' +
+        '<span>' + h(eq.type) + '</span>' +
+      '</div>' +
+      '<div class="eq-card-info">' +
+        '<div class="eq-card-name">' + h(eq.name || 'Unnamed Unit') + '</div>' +
+        '<div class="eq-card-sub">' + ([eq.location, eq.zone].filter(Boolean).map(h).join(' · ') || 'No location') + (eq.photos && eq.photos.length ? ' · 📷 ' + eq.photos.length : '') + '</div>' +
+      '</div>' +
+      '<div class="eq-card-actions">' +
+        '<button class="btn-icon" onclick="showForm(' + i + ')">✏️</button>' +
+        '<button class="btn-icon danger" onclick="delEq(' + i + ')">🗑</button>' +
+      '</div>' +
+    '</div>'
+  ).join('');
 }
 
 function showForm(idx) {
   editIndex = idx;
   formPhotos = [];
-  formInstallPhoto = null;
-  const eq = idx>=0 ? equipment[idx] : {};
-  document.getElementById('f-type').value = eq.type||'';
-  document.getElementById('f-name').value = eq.name||'';
-  document.getElementById('f-location').value = eq.location||'';
-  document.getElementById('f-zone').value = eq.zone||'';
-  document.getElementById('f-comp-brand').value = eq.compBrand||'';
-  document.getElementById('f-comp-model').value = eq.compModel||'';
-  document.getElementById('f-comp-hp').value = eq.compHp||'';
-  document.getElementById('f-comp-type').value = eq.compType||'';
-  document.getElementById('f-refrigerant').value = eq.refrigerant||'';
-  document.getElementById('f-refrigerant-num').value = eq.refrigerantNum||'';
-  document.getElementById('f-voltage').value = eq.voltage||'';
-  document.getElementById('f-rla').value = eq.rla||'';
-  document.getElementById('f-lra').value = eq.lra||'';
-  document.getElementById('f-notes').value = eq.notes||'';
+  photosLoading = 0;
+  const eq = idx >= 0 ? equipment[idx] : {};
+  document.getElementById('f-type').value = eq.type || '';
+  document.getElementById('f-name').value = eq.name || '';
+  document.getElementById('f-location').value = eq.location || '';
+  document.getElementById('f-zone').value = eq.zone || '';
+  document.getElementById('f-comp-brand').value = eq.compBrand || '';
+  document.getElementById('f-comp-model').value = eq.compModel || '';
+  document.getElementById('f-comp-hp').value = eq.compHp || '';
+  document.getElementById('f-comp-type').value = eq.compType || '';
+  document.getElementById('f-refrigerant').value = eq.refrigerant || '';
+  document.getElementById('f-refrigerant-num').value = eq.refrigerantNum || '';
+  document.getElementById('f-voltage').value = eq.voltage || '';
+  document.getElementById('f-rla').value = eq.rla || '';
+  document.getElementById('f-lra').value = eq.lra || '';
+  document.getElementById('f-notes').value = eq.notes || '';
   document.getElementById('photo-label-input').value = '';
-  document.getElementById('install-photo-label-input').value = '';
-  formInstallPhoto = eq.installPhoto || null;
-  renderInstallPhoto();
   formPhotos = eq.photos ? JSON.parse(JSON.stringify(eq.photos)) : [];
   renderPhotoGrid();
   showScreen('screen-form');
 }
 
 function saveEquipment() {
+  if (photosLoading > 0) { alert('Please wait — photos are still loading.'); return; }
   const type = document.getElementById('f-type').value;
   const name = document.getElementById('f-name').value.trim();
   if (!type) { alert('Please select an equipment type.'); return; }
@@ -451,39 +420,22 @@ function saveEquipment() {
     rla: document.getElementById('f-rla').value.trim(),
     lra: document.getElementById('f-lra').value.trim(),
     notes: document.getElementById('f-notes').value.trim(),
-    photos: formPhotos,
-    installPhoto: formInstallPhoto
+    photos: formPhotos
   };
-  if (editIndex>=0) equipment[editIndex]=eq; else equipment.push(eq);
-  persist(); showList();
+  if (editIndex >= 0) { equipment[editIndex] = eq; } else { equipment.push(eq); }
+  persist();
+  showList();
 }
 
 function delEq(i) {
   if (!confirm('Delete this unit?')) return;
-  equipment.splice(i,1); persist(); renderList();
+  equipment.splice(i, 1);
+  persist();
+  renderList();
 }
 
-// INSTALL PHOTO
-function triggerInstallPhoto() {
-function handleInstallPhoto(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const label = document.getElementById('install-photo-label-input').value.trim() || 'Install Location';
-  const r = new FileReader();
-  r.onload = ev => {
-  };
-  r.readAsDataURL(file);
-  e.target.value = '';
-}
-
-function removeInstallPhoto() {
-}
-
-}
-
-// PHOTOS
 function triggerPhoto() {
-  if (formPhotos.length>=5) { alert('Maximum 5 photos per unit.'); return; }
+  if (formPhotos.length >= 5) { alert('Maximum 5 photos per unit.'); return; }
   document.getElementById('photo-input').click();
 }
 
@@ -491,10 +443,13 @@ function handlePhotos(e) {
   const files = Array.from(e.target.files);
   const label = document.getElementById('photo-label-input').value.trim() || 'Photo';
   const slots = 5 - formPhotos.length;
-  files.slice(0,slots).forEach((f,idx) => {
+  const toProcess = files.slice(0, slots);
+  photosLoading += toProcess.length;
+  toProcess.forEach((f, idx) => {
     const r = new FileReader();
     r.onload = ev => {
-      formPhotos.push({ dataUrl: ev.target.result, label: files.length>1 ? label+' '+(idx+1) : label });
+      formPhotos.push({ dataUrl: ev.target.result, label: toProcess.length > 1 ? label + ' ' + (idx + 1) : label });
+      photosLoading--;
       renderPhotoGrid();
     };
     r.readAsDataURL(f);
@@ -502,101 +457,88 @@ function handlePhotos(e) {
   e.target.value = '';
 }
 
-function removePhoto(i) { formPhotos.splice(i,1); renderPhotoGrid(); }
-
-function handleInstallPhoto(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const r = new FileReader();
-  r.onload = ev => {
-    formInstallPhoto = ev.target.result;
-    renderInstallPhoto();
-  };
-  r.readAsDataURL(file);
-  e.target.value = '';
-}
-
-function renderInstallPhoto() {
-  const preview = document.getElementById('install-photo-preview');
-  if (!preview) return;
-  if (formInstallPhoto) {
-    preview.innerHTML = `
-      <div class="photo-thumb" style="width:100%;aspect-ratio:16/9;margin-bottom:6px;">
-        <img src="${formInstallPhoto}" alt="Install Location" style="width:100%;height:100%;object-fit:cover;">
-        <div class="photo-label-overlay">Install Location</div>
-        <button class="photo-delete" onclick="formInstallPhoto=null;renderInstallPhoto();">✕</button>
-      </div>`;
-  } else {
-    preview.innerHTML = '';
-  }
-}
+function removePhoto(i) { formPhotos.splice(i, 1); renderPhotoGrid(); }
 
 function renderPhotoGrid() {
   const g = document.getElementById('photo-grid');
-  let html = formPhotos.map((p,i) => `
-    <div class="photo-thumb">
-      <img src="${p.dataUrl}" alt="${h(p.label)}">
-      <div class="photo-label-overlay">${h(p.label)}</div>
-      <button class="photo-delete" onclick="removePhoto(${i})">✕</button>
-    </div>`).join('');
-  if (formPhotos.length<5) html += `<div class="photo-add-slot" onclick="triggerPhoto()"><span class="plus">+</span><span>Add Photo</span></div>`;
+  let html = formPhotos.map((p, i) =>
+    '<div class="photo-thumb">' +
+      '<img src="' + p.dataUrl + '" alt="' + h(p.label) + '">' +
+      '<div class="photo-label-overlay">' + h(p.label) + '</div>' +
+      '<button class="photo-delete" onclick="removePhoto(' + i + ')">✕</button>' +
+    '</div>'
+  ).join('');
+  if (formPhotos.length < 5) {
+    html += '<div class="photo-add-slot" onclick="triggerPhoto()"><span class="plus">+</span><span>Add Photo</span></div>';
+  }
   g.innerHTML = html;
-  document.getElementById('photo-count-msg').textContent = formPhotos.length ? formPhotos.length+'/5 photo'+(formPhotos.length!==1?'s':'') : '';
+  document.getElementById('photo-count-msg').textContent = formPhotos.length ? formPhotos.length + '/5 photo' + (formPhotos.length !== 1 ? 's' : '') : '';
 }
 
-// SUMMARY
 function fmtDate(d) {
   if (!d) return '';
   const p = d.split('-');
-  return p.length===3 ? p[1]+'/'+p[2]+'/'+p[0] : d;
+  return p.length === 3 ? p[1] + '/' + p[2] + '/' + p[0] : d;
 }
-function val(v) { return v ? `<span class="sfield-value">${h(v)}</span>` : `<span class="sfield-value empty">—</span>`; }
-function sf(label, value) { return `<div><div class="sfield-label">${label}</div>${val(value)}</div>`; }
+
+function val(v) { return v ? '<span class="sfield-value">' + h(v) + '</span>' : '<span class="sfield-value empty">—</span>'; }
+function sf(label, value) { return '<div><div class="sfield-label">' + label + '</div>' + val(value) + '</div>'; }
 
 function renderSummary() {
   const hd = surveyHeader;
-  let html = `
-    <div class="summary-job-header">
-      <h2>${h(hd.job||'Equipment Survey')}</h2>
-      <div class="summary-meta-grid">
-        <div><div class="smeta-label">Date</div><div class="smeta-value">${h(fmtDate(hd.date)||'—')}</div></div>
-        <div><div class="smeta-label">Service Company</div><div class="smeta-value">${h(hd.company||'—')}</div></div>
-        <div><div class="smeta-label">Audited By</div><div class="smeta-value">${h(hd.auditor||'—')}</div></div>
-        <div><div class="smeta-label">Units Surveyed</div><div class="smeta-value">${equipment.length}</div></div>
-      </div>
-      ${hd.notes ? `<div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border)"><div class="smeta-label" style="margin-bottom:4px">General Comments</div><div style="font-size:14px;line-height:1.5">${h(hd.notes)}</div></div>` : ''}
-    </div>`;
+  let html = '<div class="summary-job-header">' +
+    '<h2>' + h(hd.job || 'Equipment Survey') + '</h2>' +
+    '<div class="summary-meta-grid">' +
+      '<div><div class="smeta-label">Date</div><div class="smeta-value">' + h(fmtDate(hd.date) || '—') + '</div></div>' +
+      '<div><div class="smeta-label">Service Company</div><div class="smeta-value">' + h(hd.company || '—') + '</div></div>' +
+      '<div><div class="smeta-label">Audited By</div><div class="smeta-value">' + h(hd.auditor || '—') + '</div></div>' +
+      '<div><div class="smeta-label">Units Surveyed</div><div class="smeta-value">' + equipment.length + '</div></div>' +
+    '</div>' +
+    (hd.notes ? '<div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.2)"><div class="smeta-label" style="margin-bottom:4px">General Comments</div><div style="font-size:14px;line-height:1.5;color:#fff">' + h(hd.notes) + '</div></div>' : '') +
+  '</div>';
 
   if (!equipment.length) {
-    html += `<div class="empty-state"><div class="icon">📋</div><p>No equipment has been added yet.</p></div>`;
+    html += '<div class="empty-state"><div class="icon">📋</div><p>No equipment has been added yet.</p></div>';
   } else {
     equipment.forEach(eq => {
-      html += `
-        <div class="summary-eq-card">
-          <div class="summary-eq-header">
-            <div class="eq-type-badge ${badgeClass(eq.type)}" style="width:42px;height:42px;font-size:8px">
-              <span style="font-size:17px">${typeIcon(eq.type)}</span>
-              <span>${h(eq.type)}</span>
-            </div>
-            <div>
-              <h3>${h(eq.name)}</h3>
-              <div style="font-size:12px;color:var(--muted)">${[eq.location,eq.zone].filter(Boolean).map(h).join(' · ')||''}</div>
-            </div>
-          </div>
-          <div class="section-divider">Compressor</div>
-          <div class="summary-data-grid">
-            ${sf('Brand',eq.compBrand)}${sf('Model',eq.compModel)}${sf('HP',eq.compHp)}${sf('Type',eq.compType)}${sf('Refrigerant',eq.refrigerant)}${sf('Refrigerant #',eq.refrigerantNum)}
-          </div>
-          <div class="section-divider">Electrical</div>
-          <div class="summary-data-grid">
-            ${sf('Voltage',eq.voltage)}${sf('RLA',eq.rla?eq.rla+'A':'')}${sf('LRA',eq.lra?eq.lra+'A':'')}
-          </div>
-          ${eq.notes?`<div class="summary-notes"><div class="sfield-label" style="margin-bottom:4px">Field Notes</div><p>${h(eq.notes)}</p></div>`:''}
-          ${eq.installPhoto?`<div class="summary-notes"><div class="sfield-label" style="margin-bottom:6px">Install Location Photo</div><img src="${eq.installPhoto}" alt="Install Location" style="width:100%;max-width:340px;border-radius:6px;border:1px solid var(--border);display:block;"></div>`:''}
-        </div>`;
+      html +=
+        '<div class="summary-eq-card">' +
+          '<div class="summary-eq-header">' +
+            '<div class="eq-type-badge ' + badgeClass(eq.type) + '" style="width:42px;height:42px;font-size:8px">' +
+              '<span style="font-size:17px">' + typeIcon(eq.type) + '</span>' +
+              '<span>' + h(eq.type) + '</span>' +
+            '</div>' +
+            '<div>' +
+              '<h3>' + h(eq.name) + '</h3>' +
+              '<div style="font-size:12px;color:var(--muted)">' + ([eq.location, eq.zone].filter(Boolean).map(h).join(' · ') || '') + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="section-divider">Compressor</div>' +
+          '<div class="summary-data-grid">' +
+            sf('Brand', eq.compBrand) + sf('Model', eq.compModel) + sf('HP', eq.compHp) +
+            sf('Type', eq.compType) + sf('Refrigerant', eq.refrigerant) + sf('Refrigerant #', eq.refrigerantNum) +
+          '</div>' +
+          '<div class="section-divider">Electrical</div>' +
+          '<div class="summary-data-grid">' +
+            sf('Voltage', eq.voltage) + sf('RLA', eq.rla ? eq.rla + 'A' : '') + sf('LRA', eq.lra ? eq.lra + 'A' : '') +
+          '</div>' +
+          (eq.notes ? '<div class="summary-notes"><div class="sfield-label" style="margin-bottom:4px">Field Notes</div><p>' + h(eq.notes) + '</p></div>' : '') +
+        '</div>';
     });
 
-    
+    const withPhotos = equipment.filter(eq => eq.photos && eq.photos.length);
+    if (withPhotos.length) {
+      html += '<div class="photos-summary-section"><h3>📷 Photo Documentation</h3>';
+      withPhotos.forEach(eq => {
+        html += '<div class="photo-group"><div class="photo-group-title">' + h(eq.name) + ' — ' + h(eq.type) + '</div>' +
+          '<div class="photo-summary-grid">' +
+          eq.photos.map(p =>
+            '<div class="photo-summary-item"><img src="' + p.dataUrl + '" alt="' + h(p.label) + '"><div class="ps-label">' + h(p.label) + '</div></div>'
+          ).join('') +
+          '</div></div>';
+      });
+      html += '</div>';
+    }
   }
 
   document.getElementById('summary-content').innerHTML = html;
@@ -604,10 +546,9 @@ function renderSummary() {
 
 function h(s) {
   if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-// Auto-save header
 ['h-job','h-date','h-company','h-auditor','h-notes'].forEach(id => {
   const el = document.getElementById(id);
   el.addEventListener('change', () => persist());
