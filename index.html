@@ -173,7 +173,6 @@
       <div class="field-grid">
         <div class="field"><label>Job Name</label><input type="text" id="h-job" placeholder="e.g. Smith's Grocery"></div>
         <div class="field"><label>Date</label><input type="date" id="h-date"></div>
-        <div class="field"><label>Service Company</label><input type="text" id="h-company" placeholder="Company name"></div>
         <div class="field"><label>Audited By</label><input type="text" id="h-auditor" placeholder="Full name"></div>
       </div>
     </div>
@@ -221,7 +220,6 @@
             <option value="Roof">Roof</option>
           </select>
         </div>
-        <div class="field"><label>Zone / Area</label><input type="text" id="f-zone" placeholder="e.g. Produce Room"></div>
       </div>
     </div>
 
@@ -230,25 +228,6 @@
       <div class="field-grid">
         <div class="field"><label>Brand</label><input type="text" id="f-comp-brand" placeholder="e.g. Copeland"></div>
         <div class="field"><label>Model</label><input type="text" id="f-comp-model" placeholder="e.g. ZB45KCE"></div>
-        <div class="field"><label>HP</label><input type="text" id="f-comp-hp" placeholder="e.g. 3.5"></div>
-        <div class="field">
-          <label>Type</label>
-          <select id="f-comp-type">
-            <option value="">-- Select --</option>
-            <option>Recip</option>
-            <option>Scroll</option>
-            <option>Screw</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Refrigerant</label>
-          <select id="f-refrigerant">
-            <option value="">-- Select --</option>
-            <option>Freon</option>
-            <option>Ammonia</option>
-          </select>
-        </div>
-        <div class="field"><label>Refrigerant #</label><input type="text" id="f-refrigerant-num" placeholder="e.g. R-404A"></div>
       </div>
     </div>
 
@@ -286,7 +265,7 @@
     </div>
 
     <button class="btn btn-primary" onclick="saveEquipment()">Save Equipment</button>
-    <button class="btn btn-ghost" onclick="showList()">Cancel</button>
+    <button class="btn btn-ghost" onclick="showList()">← Back</button>
   </div>
 </div>
 
@@ -301,7 +280,7 @@
 
 <script>
 let equipment = [];
-let surveyHeader = { job:'', date:'', company:'', auditor:'', notes:'' };
+let surveyHeader = { job:'', date:'', auditor:'', notes:'' };
 let formPhotos = [];
 let editIndex = -1;
 let photosLoading = 0;
@@ -325,7 +304,6 @@ function persist() {
 function loadHeader() {
   document.getElementById('h-job').value = surveyHeader.job || '';
   document.getElementById('h-date').value = surveyHeader.date || '';
-  document.getElementById('h-company').value = surveyHeader.company || '';
   document.getElementById('h-auditor').value = surveyHeader.auditor || '';
   document.getElementById('h-notes').value = surveyHeader.notes || '';
   document.getElementById('hdr-meta').textContent = equipment.length + ' unit' + (equipment.length !== 1 ? 's' : '');
@@ -334,7 +312,6 @@ function loadHeader() {
 function saveHeader() {
   surveyHeader.job = document.getElementById('h-job').value.trim();
   surveyHeader.date = document.getElementById('h-date').value;
-  surveyHeader.company = document.getElementById('h-company').value.trim();
   surveyHeader.auditor = document.getElementById('h-auditor').value.trim();
   surveyHeader.notes = document.getElementById('h-notes').value.trim();
 }
@@ -365,7 +342,7 @@ function renderList() {
       '</div>' +
       '<div class="eq-card-info">' +
         '<div class="eq-card-name">' + h(eq.name || 'Unnamed Unit') + '</div>' +
-        '<div class="eq-card-sub">' + ([eq.location, eq.zone].filter(Boolean).map(h).join(' · ') || 'No location') + (eq.photos && eq.photos.length ? ' · 📷 ' + eq.photos.length : '') + '</div>' +
+        '<div class="eq-card-sub">' + ([eq.location].filter(Boolean).map(h).join(' · ') || 'No location') + (eq.photos && eq.photos.length ? ' · 📷 ' + eq.photos.length : '') + '</div>' +
       '</div>' +
       '<div class="eq-card-actions">' +
         '<button class="btn-icon" onclick="showForm(' + i + ')">✏️</button>' +
@@ -383,13 +360,8 @@ function showForm(idx) {
   document.getElementById('f-type').value = eq.type || '';
   document.getElementById('f-name').value = eq.name || '';
   document.getElementById('f-location').value = eq.location || '';
-  document.getElementById('f-zone').value = eq.zone || '';
   document.getElementById('f-comp-brand').value = eq.compBrand || '';
   document.getElementById('f-comp-model').value = eq.compModel || '';
-  document.getElementById('f-comp-hp').value = eq.compHp || '';
-  document.getElementById('f-comp-type').value = eq.compType || '';
-  document.getElementById('f-refrigerant').value = eq.refrigerant || '';
-  document.getElementById('f-refrigerant-num').value = eq.refrigerantNum || '';
   document.getElementById('f-voltage').value = eq.voltage || '';
   document.getElementById('f-rla').value = eq.rla || '';
   document.getElementById('f-lra').value = eq.lra || '';
@@ -401,7 +373,6 @@ function showForm(idx) {
 }
 
 function saveEquipment() {
-  if (photosLoading > 0) { alert('Please wait — photos are still loading.'); return; }
   const type = document.getElementById('f-type').value;
   const name = document.getElementById('f-name').value.trim();
   if (!type) { alert('Please select an equipment type.'); return; }
@@ -409,13 +380,8 @@ function saveEquipment() {
   const eq = {
     type, name,
     location: document.getElementById('f-location').value,
-    zone: document.getElementById('f-zone').value.trim(),
     compBrand: document.getElementById('f-comp-brand').value.trim(),
     compModel: document.getElementById('f-comp-model').value.trim(),
-    compHp: document.getElementById('f-comp-hp').value.trim(),
-    compType: document.getElementById('f-comp-type').value,
-    refrigerant: document.getElementById('f-refrigerant').value,
-    refrigerantNum: document.getElementById('f-refrigerant-num').value.trim(),
     voltage: document.getElementById('f-voltage').value,
     rla: document.getElementById('f-rla').value.trim(),
     lra: document.getElementById('f-lra').value.trim(),
@@ -444,12 +410,10 @@ function handlePhotos(e) {
   const label = document.getElementById('photo-label-input').value.trim() || 'Photo';
   const slots = 5 - formPhotos.length;
   const toProcess = files.slice(0, slots);
-  photosLoading += toProcess.length;
   toProcess.forEach((f, idx) => {
     const r = new FileReader();
     r.onload = ev => {
       formPhotos.push({ dataUrl: ev.target.result, label: toProcess.length > 1 ? label + ' ' + (idx + 1) : label });
-      photosLoading--;
       renderPhotoGrid();
     };
     r.readAsDataURL(f);
@@ -490,7 +454,6 @@ function renderSummary() {
     '<h2>' + h(hd.job || 'Equipment Survey') + '</h2>' +
     '<div class="summary-meta-grid">' +
       '<div><div class="smeta-label">Date</div><div class="smeta-value">' + h(fmtDate(hd.date) || '—') + '</div></div>' +
-      '<div><div class="smeta-label">Service Company</div><div class="smeta-value">' + h(hd.company || '—') + '</div></div>' +
       '<div><div class="smeta-label">Audited By</div><div class="smeta-value">' + h(hd.auditor || '—') + '</div></div>' +
       '<div><div class="smeta-label">Units Surveyed</div><div class="smeta-value">' + equipment.length + '</div></div>' +
     '</div>' +
@@ -510,13 +473,13 @@ function renderSummary() {
             '</div>' +
             '<div>' +
               '<h3>' + h(eq.name) + '</h3>' +
-              '<div style="font-size:12px;color:var(--muted)">' + ([eq.location, eq.zone].filter(Boolean).map(h).join(' · ') || '') + '</div>' +
+              '<div style="font-size:12px;color:var(--muted)">' + ([eq.location].filter(Boolean).map(h).join(' · ') || '') + '</div>' +
             '</div>' +
           '</div>' +
           '<div class="section-divider">Compressor</div>' +
           '<div class="summary-data-grid">' +
-            sf('Brand', eq.compBrand) + sf('Model', eq.compModel) + sf('HP', eq.compHp) +
-            sf('Type', eq.compType) + sf('Refrigerant', eq.refrigerant) + sf('Refrigerant #', eq.refrigerantNum) +
+            sf('Brand', eq.compBrand) + sf('Model', eq.compModel) + 
+            
           '</div>' +
           '<div class="section-divider">Electrical</div>' +
           '<div class="summary-data-grid">' +
@@ -549,7 +512,7 @@ function h(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-['h-job','h-date','h-company','h-auditor','h-notes'].forEach(id => {
+['h-job','h-date','h-auditor','h-notes'].forEach(id => {
   const el = document.getElementById(id);
   el.addEventListener('change', () => persist());
   el.addEventListener('input', () => persist());
