@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <title>VFM Audit Tool</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
@@ -17,55 +15,48 @@
     --accent: #e8500a;
     --accent-hover: #c44008;
     --navy: #1a2f4e;
-    --navy-light: #2a4570;
-    --blue: #2a6db5;
-    --green: #1e7a4a;
     --red: #cc2222;
     --text: #1a2032;
     --muted: #6b7a93;
     --input-bg: #f7f9fc;
     --tag-cooler-bg: #dff5ec; --tag-cooler: #1a6b45;
     --tag-freezer-bg: #ddeaf8; --tag-freezer: #1a4a8f;
-    --tag-hvac-bg: #fdeede; --tag-hvac: #b83d08;
+    --tag-hvac-bg: #fdeede;   --tag-hvac: #b83d08;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body { font-family: 'Source Sans 3', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; }
 
+  /* HEADER */
   .app-header { background: var(--navy); border-bottom: 3px solid var(--accent); padding: 12px 16px; position: sticky; top: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; }
-  .app-header h1 { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #ffffff; }
+  .app-header h1 { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
   .header-meta { font-family: 'Rajdhani', sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); letter-spacing: 1px; }
 
+  /* SCREENS */
   .screen { display: none; }
   .screen.active { display: block; }
   .container { max-width: 700px; margin: 0 auto; padding: 18px 14px 100px; }
 
+  /* CARDS */
   .survey-header-card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; padding: 16px; margin-bottom: 14px; }
   .survey-header-card h2 { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--navy); margin-bottom: 12px; }
-
-  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .field-grid.cols-1 { grid-template-columns: 1fr; }
-  .field-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-  .field { display: flex; flex-direction: column; gap: 4px; }
-  .field.span2 { grid-column: span 2; }
-
-  label { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
-
-  input, select, textarea {
-    background: var(--input-bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text);
-    font-family: 'Source Sans 3', sans-serif; font-size: 15px; padding: 10px 12px; width: 100%;
-    transition: border-color 0.15s; -webkit-appearance: none; appearance: none;
-  }
-  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7a93' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
-  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232,80,10,0.12); }
-  select option { background: #ffffff; color: #1a2032; }
-  textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
-
   .section-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
   .section-title { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--navy); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
+  /* FIELDS */
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .field-grid.cols-1 { grid-template-columns: 1fr; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  label { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  input, select, textarea { background: var(--input-bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: 'Source Sans 3', sans-serif; font-size: 15px; padding: 10px 12px; width: 100%; transition: border-color 0.15s; -webkit-appearance: none; appearance: none; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7a93' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232,80,10,0.12); }
+  select option { background: #fff; color: #1a2032; }
+  textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
+
+  /* EQUIPMENT LIST */
   .eq-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-  .eq-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; transition: border-color 0.15s, box-shadow 0.15s; }
-  .eq-card:hover { border-color: var(--navy); box-shadow: 0 2px 8px rgba(26,47,78,0.1); }
+  .eq-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; transition: border-color 0.15s; }
+  .eq-card:hover { border-color: var(--navy); }
   .eq-type-badge { flex-shrink: 0; width: 46px; height: 46px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Rajdhani', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
   .badge-cooler { background: var(--tag-cooler-bg); color: var(--tag-cooler); border: 1px solid var(--tag-cooler); }
   .badge-freezer { background: var(--tag-freezer-bg); color: var(--tag-freezer); border: 1px solid var(--tag-freezer); }
@@ -78,10 +69,12 @@
   .btn-icon:hover { border-color: var(--navy); color: var(--navy); }
   .btn-icon.danger:hover { border-color: var(--red); color: var(--red); }
 
+  /* EMPTY STATE */
   .empty-state { text-align: center; padding: 48px 20px; color: var(--muted); background: var(--surface); border: 1px dashed var(--border); border-radius: 8px; }
   .empty-state .icon { font-size: 36px; margin-bottom: 10px; }
   .empty-state p { font-size: 14px; line-height: 1.6; }
 
+  /* BUTTONS */
   .btn { display: block; width: 100%; padding: 13px 20px; border-radius: 8px; font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; text-align: center; transition: all 0.15s; border: none; }
   .btn + .btn { margin-top: 8px; }
   .btn-primary { background: var(--accent); color: #fff; }
@@ -91,33 +84,35 @@
   .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
   .btn-outline:hover { background: var(--accent); color: #fff; }
 
+  /* PHOTOS */
   .photo-label-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
   .photo-label-row input { flex: 1; padding: 8px 10px; font-size: 13px; }
   .photo-add-trigger { flex-shrink: 0; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--muted); padding: 0 14px; height: 40px; display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap; transition: all 0.15s; }
-  .photo-add-trigger:hover { border-color: var(--accent); color: var(--accent); background: #fff5f0; }
+  .photo-add-trigger:hover { border-color: var(--accent); color: var(--accent); }
   #photo-input { display: none; }
   .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .photo-thumb { position: relative; aspect-ratio: 1; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); background: var(--input-bg); }
   .photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .photo-thumb .photo-label-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.72); font-size: 10px; padding: 3px 6px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .photo-thumb .photo-delete { position: absolute; top: 4px; right: 4px; background: rgba(0,0,0,0.65); border: none; border-radius: 4px; color: #fff; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; }
-  .photo-add-slot { aspect-ratio: 1; border-radius: 6px; border: 1px dashed var(--border); background: var(--input-bg); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); font-size: 11px; gap: 4px; transition: border-color 0.15s; }
-  .photo-add-slot:hover { border-color: var(--accent); color: var(--accent); background: #fff5f0; }
+  .photo-add-slot { aspect-ratio: 1; border-radius: 6px; border: 1px dashed var(--border); background: var(--input-bg); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); font-size: 11px; gap: 4px; transition: all 0.15s; }
+  .photo-add-slot:hover { border-color: var(--accent); color: var(--accent); }
   .photo-add-slot .plus { font-size: 22px; }
   .photo-count-msg { font-size: 12px; color: var(--muted); margin-top: 6px; }
 
-  .summary-job-header { background: var(--navy); border: 1px solid var(--navy); border-left: 4px solid var(--accent); border-radius: 8px; padding: 18px 20px; margin-bottom: 20px; }
-  .summary-job-header h2 { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: #ffffff; letter-spacing: 1px; margin-bottom: 12px; }
+  /* SUMMARY */
+  .summary-job-header { background: var(--navy); border-radius: 8px; border-left: 4px solid var(--accent); padding: 18px 20px; margin-bottom: 20px; }
+  .summary-job-header h2 { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: #fff; letter-spacing: 1px; margin-bottom: 12px; }
   .summary-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; }
   .smeta-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.65); font-weight: 600; }
-  .smeta-value { font-size: 15px; color: #ffffff; font-weight: 600; }
+  .smeta-value { font-size: 15px; color: #fff; font-weight: 600; }
   .summary-eq-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; margin-bottom: 14px; }
   .summary-eq-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
   .summary-eq-header h3 { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 1px; }
   .summary-data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; }
   .sfield-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 600; }
   .sfield-value { font-size: 14px; color: var(--text); }
-  .sfield-value.empty { color: var(--border); font-style: italic; font-size: 12px; }
+  .sfield-value.empty { color: #ccc; font-style: italic; font-size: 12px; }
   .section-divider { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--navy); margin: 12px 0 8px; padding-top: 8px; border-top: 1px solid var(--border); }
   .summary-notes { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
   .summary-notes p { font-size: 14px; line-height: 1.5; }
@@ -129,6 +124,7 @@
   .photo-summary-item img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); display: block; }
   .photo-summary-item .ps-label { font-size: 10px; color: var(--muted); margin-top: 3px; text-align: center; }
 
+  /* PRINT */
   @media print {
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     body { background: #fff; color: #1a2032; }
@@ -137,19 +133,11 @@
     #screen-list, #screen-form { display: none !important; }
     #screen-summary { display: block !important; }
     .app-header { background: #1a2f4e; border-bottom: 3px solid #e8500a; position: relative; }
-    .app-header h1 { color: #ffffff; }
+    .app-header h1 { color: #fff; }
     .header-meta { display: none; }
-    .summary-job-header { background: #1a2f4e !important; border-color: #1a2f4e; border-left-color: #e8500a; }
-    .summary-job-header h2 { color: #ffffff; }
-    .smeta-label { color: rgba(255,255,255,0.65); }
-    .smeta-value { color: #ffffff; }
-    .sfield-label, .photo-group-title { color: #555; }
-    .sfield-value { color: #1a2032; }
+    .summary-job-header { background: #1a2f4e !important; }
     .summary-eq-card, .photos-summary-section { background: #fff; border-color: #ccc; break-inside: avoid; }
-    .summary-eq-header { border-bottom-color: #eee; }
     .section-divider { color: #1a2f4e; border-top-color: #ddd; }
-    .summary-notes { border-top-color: #eee; }
-    .sfield-value.empty { color: #ccc; }
     .badge-cooler { background: #dff5ec; color: #1a6b45; border-color: #1a6b45; }
     .badge-freezer { background: #ddeaf8; color: #1a4a8f; border-color: #1a4a8f; }
     .badge-hvac { background: #fdeede; color: #b83d08; border-color: #b83d08; }
@@ -165,7 +153,7 @@
   <span class="header-meta" id="hdr-meta">0 units</span>
 </div>
 
-<!-- LIST -->
+<!-- ══ LIST ══ -->
 <div id="screen-list" class="screen active">
   <div class="container">
     <div class="survey-header-card">
@@ -178,9 +166,7 @@
     </div>
     <div class="survey-header-card">
       <h2>General Comments</h2>
-      <div class="field">
-        <textarea id="h-notes" placeholder="General site observations, conditions, access notes..." rows="3"></textarea>
-      </div>
+      <textarea id="h-notes" placeholder="General site observations, conditions, access notes..." rows="3"></textarea>
     </div>
     <div id="eq-list" class="eq-list">
       <div class="empty-state">
@@ -193,7 +179,7 @@
   </div>
 </div>
 
-<!-- FORM -->
+<!-- ══ FORM ══ -->
 <div id="screen-form" class="screen">
   <div class="container">
 
@@ -210,8 +196,6 @@
           </select>
         </div>
         <div class="field"><label>Unit Name / Tag *</label><input type="text" id="f-name" placeholder="e.g. Walk-in Cooler #1"></div>
-      </div>
-      <div class="field-grid" style="margin-top:10px;">
         <div class="field">
           <label>Location</label>
           <select id="f-location">
@@ -238,7 +222,11 @@
           <label>Voltage</label>
           <select id="f-voltage">
             <option value="">--</option>
-            <option>115V</option><option>208V</option><option>230V</option><option>460V</option><option>480V</option>
+            <option>115V</option>
+            <option>208V</option>
+            <option>230V</option>
+            <option>460V</option>
+            <option>480V</option>
           </select>
         </div>
         <div class="field"><label>RLA (Amps)</label><input type="text" inputmode="decimal" id="f-rla" placeholder="e.g. 18.5"></div>
@@ -248,15 +236,13 @@
 
     <div class="section-card">
       <div class="section-title">Field Notes</div>
-      <div class="field">
-        <textarea id="f-notes" placeholder="Observations, condition, installation notes..."></textarea>
-      </div>
+      <textarea id="f-notes" placeholder="Observations, condition, installation notes..."></textarea>
     </div>
 
     <div class="section-card">
       <div class="section-title">Photos <span style="font-weight:400;color:var(--muted);font-size:10px;">(up to 5)</span></div>
       <div class="photo-label-row">
-        <input type="text" id="photo-label-input" placeholder="Label (e.g. Nameplate, Overview, Wiring...)">
+        <input type="text" id="photo-label-input" placeholder="Label (e.g. Nameplate, Overview...)">
         <button class="photo-add-trigger" onclick="triggerPhoto()">📷 Add</button>
       </div>
       <input type="file" id="photo-input" accept="image/*" capture="environment" multiple onchange="handlePhotos(event)" style="display:none">
@@ -269,7 +255,7 @@
   </div>
 </div>
 
-<!-- SUMMARY -->
+<!-- ══ SUMMARY ══ -->
 <div id="screen-summary" class="screen">
   <div class="container">
     <div id="summary-content"></div>
@@ -279,25 +265,35 @@
 </div>
 
 <script>
-let equipment = [];
-let surveyHeader = { job:'', date:'', auditor:'', notes:'' };
-let formPhotos = [];
-let editIndex = -1;
-let photosLoading = 0;
+var equipment = [];
+var surveyHeader = { job:'', date:'', auditor:'', notes:'' };
+var formPhotos = [];
+var editIndex = -1;
 
-(function() {
-  const saved = localStorage.getItem('eq_survey_v4');
-  if (saved) {
-    try { const d = JSON.parse(saved); equipment = d.equipment || []; surveyHeader = d.header || surveyHeader; } catch(e) {}
-  }
+// INIT
+(function init() {
+  try {
+    var saved = localStorage.getItem('eq_survey_v5');
+    if (saved) {
+      var d = JSON.parse(saved);
+      equipment = d.equipment || [];
+      surveyHeader = d.header || surveyHeader;
+    }
+  } catch(e) {}
   loadHeader();
   renderList();
-  if (!surveyHeader.date) document.getElementById('h-date').valueAsDate = new Date();
+  try {
+    if (!surveyHeader.date) {
+      document.getElementById('h-date').valueAsDate = new Date();
+    }
+  } catch(e) {}
 })();
 
 function persist() {
   saveHeader();
-  localStorage.setItem('eq_survey_v4', JSON.stringify({ equipment, header: surveyHeader }));
+  try {
+    localStorage.setItem('eq_survey_v5', JSON.stringify({ equipment: equipment, header: surveyHeader }));
+  } catch(e) {}
   document.getElementById('hdr-meta').textContent = equipment.length + ' unit' + (equipment.length !== 1 ? 's' : '');
 }
 
@@ -317,46 +313,65 @@ function saveHeader() {
 }
 
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  var screens = document.querySelectorAll('.screen');
+  for (var i = 0; i < screens.length; i++) {
+    screens[i].classList.remove('active');
+  }
   document.getElementById(id).classList.add('active');
   window.scrollTo(0, 0);
 }
 
-function showList() { loadHeader(); renderList(); showScreen('screen-list'); }
-function showSummary() { saveHeader(); persist(); renderSummary(); showScreen('screen-summary'); }
+function showList() {
+  loadHeader();
+  renderList();
+  showScreen('screen-list');
+}
 
-function badgeClass(t) { return t==='Cooler'?'badge-cooler':t==='Freezer'?'badge-freezer':'badge-hvac'; }
-function typeIcon(t) { return t==='Cooler'?'❄':t==='Freezer'?'🧊':'💨'; }
+function showSummary() {
+  saveHeader();
+  persist();
+  renderSummary();
+  showScreen('screen-summary');
+}
+
+function badgeClass(t) {
+  return t === 'Cooler' ? 'badge-cooler' : t === 'Freezer' ? 'badge-freezer' : 'badge-hvac';
+}
+
+function typeIcon(t) {
+  return t === 'Cooler' ? '❄' : t === 'Freezer' ? '🧊' : '💨';
+}
 
 function renderList() {
-  const c = document.getElementById('eq-list');
+  var c = document.getElementById('eq-list');
   if (!equipment.length) {
     c.innerHTML = '<div class="empty-state"><div class="icon">🔩</div><p>No equipment logged yet.<br>Tap <strong>Add Equipment</strong> to begin.</p></div>';
     return;
   }
-  c.innerHTML = equipment.map((eq, i) =>
-    '<div class="eq-card">' +
-      '<div class="eq-type-badge ' + badgeClass(eq.type) + '">' +
-        '<span style="font-size:18px">' + typeIcon(eq.type) + '</span>' +
-        '<span>' + h(eq.type) + '</span>' +
-      '</div>' +
-      '<div class="eq-card-info">' +
-        '<div class="eq-card-name">' + h(eq.name || 'Unnamed Unit') + '</div>' +
-        '<div class="eq-card-sub">' + ([eq.location].filter(Boolean).map(h).join(' · ') || 'No location') + (eq.photos && eq.photos.length ? ' · 📷 ' + eq.photos.length : '') + '</div>' +
-      '</div>' +
-      '<div class="eq-card-actions">' +
-        '<button class="btn-icon" onclick="showForm(' + i + ')">✏️</button>' +
-        '<button class="btn-icon danger" onclick="delEq(' + i + ')">🗑</button>' +
-      '</div>' +
-    '</div>'
-  ).join('');
+  var html = '';
+  for (var i = 0; i < equipment.length; i++) {
+    var eq = equipment[i];
+    html += '<div class="eq-card">';
+    html += '<div class="eq-type-badge ' + badgeClass(eq.type) + '">';
+    html += '<span style="font-size:18px">' + typeIcon(eq.type) + '</span>';
+    html += '<span>' + h(eq.type) + '</span></div>';
+    html += '<div class="eq-card-info">';
+    html += '<div class="eq-card-name">' + h(eq.name || 'Unnamed Unit') + '</div>';
+    var sub = [eq.location].filter(Boolean).map(h).join(' · ') || 'No location';
+    if (eq.photos && eq.photos.length) sub += ' · 📷 ' + eq.photos.length;
+    html += '<div class="eq-card-sub">' + sub + '</div></div>';
+    html += '<div class="eq-card-actions">';
+    html += '<button class="btn-icon" onclick="showForm(' + i + ')">✏️</button>';
+    html += '<button class="btn-icon danger" onclick="delEq(' + i + ')">🗑</button>';
+    html += '</div></div>';
+  }
+  c.innerHTML = html;
 }
 
 function showForm(idx) {
   editIndex = idx;
   formPhotos = [];
-  photosLoading = 0;
-  const eq = idx >= 0 ? equipment[idx] : {};
+  var eq = idx >= 0 ? equipment[idx] : {};
   document.getElementById('f-type').value = eq.type || '';
   document.getElementById('f-name').value = eq.name || '';
   document.getElementById('f-location').value = eq.location || '';
@@ -373,12 +388,13 @@ function showForm(idx) {
 }
 
 function saveEquipment() {
-  const type = document.getElementById('f-type').value;
-  const name = document.getElementById('f-name').value.trim();
+  var type = document.getElementById('f-type').value;
+  var name = document.getElementById('f-name').value.trim();
   if (!type) { alert('Please select an equipment type.'); return; }
   if (!name) { alert('Please enter a unit name or tag.'); return; }
-  const eq = {
-    type, name,
+  var eq = {
+    type: type,
+    name: name,
     location: document.getElementById('f-location').value,
     compBrand: document.getElementById('f-comp-brand').value.trim(),
     compModel: document.getElementById('f-comp-model').value.trim(),
@@ -388,7 +404,11 @@ function saveEquipment() {
     notes: document.getElementById('f-notes').value.trim(),
     photos: formPhotos
   };
-  if (editIndex >= 0) { equipment[editIndex] = eq; } else { equipment.push(eq); }
+  if (editIndex >= 0) {
+    equipment[editIndex] = eq;
+  } else {
+    equipment.push(eq);
+  }
   persist();
   showList();
 }
@@ -406,99 +426,123 @@ function triggerPhoto() {
 }
 
 function handlePhotos(e) {
-  const files = Array.from(e.target.files);
-  const label = document.getElementById('photo-label-input').value.trim() || 'Photo';
-  const slots = 5 - formPhotos.length;
-  const toProcess = files.slice(0, slots);
-  toProcess.forEach((f, idx) => {
-    const r = new FileReader();
-    r.onload = ev => {
-      formPhotos.push({ dataUrl: ev.target.result, label: toProcess.length > 1 ? label + ' ' + (idx + 1) : label });
-      renderPhotoGrid();
-    };
-    r.readAsDataURL(f);
-  });
+  var files = Array.prototype.slice.call(e.target.files);
+  var label = document.getElementById('photo-label-input').value.trim() || 'Photo';
+  var slots = 5 - formPhotos.length;
+  var toProcess = files.slice(0, slots);
+  for (var i = 0; i < toProcess.length; i++) {
+    (function(file, idx) {
+      var r = new FileReader();
+      r.onload = function(ev) {
+        formPhotos.push({ dataUrl: ev.target.result, label: toProcess.length > 1 ? label + ' ' + (idx + 1) : label });
+        renderPhotoGrid();
+      };
+      r.readAsDataURL(file);
+    })(toProcess[i], i);
+  }
   e.target.value = '';
 }
 
-function removePhoto(i) { formPhotos.splice(i, 1); renderPhotoGrid(); }
+function removePhoto(i) {
+  formPhotos.splice(i, 1);
+  renderPhotoGrid();
+}
 
 function renderPhotoGrid() {
-  const g = document.getElementById('photo-grid');
-  let html = formPhotos.map((p, i) =>
-    '<div class="photo-thumb">' +
-      '<img src="' + p.dataUrl + '" alt="' + h(p.label) + '">' +
-      '<div class="photo-label-overlay">' + h(p.label) + '</div>' +
-      '<button class="photo-delete" onclick="removePhoto(' + i + ')">✕</button>' +
-    '</div>'
-  ).join('');
+  var g = document.getElementById('photo-grid');
+  var html = '';
+  for (var i = 0; i < formPhotos.length; i++) {
+    var p = formPhotos[i];
+    html += '<div class="photo-thumb">';
+    html += '<img src="' + p.dataUrl + '" alt="' + h(p.label) + '">';
+    html += '<div class="photo-label-overlay">' + h(p.label) + '</div>';
+    html += '<button class="photo-delete" onclick="removePhoto(' + i + ')">✕</button>';
+    html += '</div>';
+  }
   if (formPhotos.length < 5) {
     html += '<div class="photo-add-slot" onclick="triggerPhoto()"><span class="plus">+</span><span>Add Photo</span></div>';
   }
   g.innerHTML = html;
-  document.getElementById('photo-count-msg').textContent = formPhotos.length ? formPhotos.length + '/5 photo' + (formPhotos.length !== 1 ? 's' : '') : '';
+  var msg = document.getElementById('photo-count-msg');
+  msg.textContent = formPhotos.length ? formPhotos.length + '/5 photo' + (formPhotos.length !== 1 ? 's' : '') : '';
 }
 
 function fmtDate(d) {
   if (!d) return '';
-  const p = d.split('-');
+  var p = d.split('-');
   return p.length === 3 ? p[1] + '/' + p[2] + '/' + p[0] : d;
 }
 
-function val(v) { return v ? '<span class="sfield-value">' + h(v) + '</span>' : '<span class="sfield-value empty">—</span>'; }
-function sf(label, value) { return '<div><div class="sfield-label">' + label + '</div>' + val(value) + '</div>'; }
+function sf(label, value) {
+  var v = value ? '<span class="sfield-value">' + h(value) + '</span>' : '<span class="sfield-value empty">—</span>';
+  return '<div><div class="sfield-label">' + label + '</div>' + v + '</div>';
+}
 
 function renderSummary() {
-  const hd = surveyHeader;
-  let html = '<div class="summary-job-header">' +
-    '<h2>' + h(hd.job || 'VFM Audit') + '</h2>' +
-    '<div class="summary-meta-grid">' +
-      '<div><div class="smeta-label">Date</div><div class="smeta-value">' + h(fmtDate(hd.date) || '—') + '</div></div>' +
-      '<div><div class="smeta-label">Audited By</div><div class="smeta-value">' + h(hd.auditor || '—') + '</div></div>' +
-      '<div><div class="smeta-label">Units Surveyed</div><div class="smeta-value">' + equipment.length + '</div></div>' +
-    '</div>' +
-    (hd.notes ? '<div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.2)"><div class="smeta-label" style="margin-bottom:4px">General Comments</div><div style="font-size:14px;line-height:1.5;color:#fff">' + h(hd.notes) + '</div></div>' : '') +
-  '</div>';
+  var hd = surveyHeader;
+  var html = '';
+
+  // Header block
+  html += '<div class="summary-job-header">';
+  html += '<h2>' + h(hd.job || 'VFM Audit') + '</h2>';
+  html += '<div class="summary-meta-grid">';
+  html += '<div><div class="smeta-label">Date</div><div class="smeta-value">' + h(fmtDate(hd.date) || '—') + '</div></div>';
+  html += '<div><div class="smeta-label">Audited By</div><div class="smeta-value">' + h(hd.auditor || '—') + '</div></div>';
+  html += '<div><div class="smeta-label">Units Surveyed</div><div class="smeta-value">' + equipment.length + '</div></div>';
+  html += '</div>';
+  if (hd.notes) {
+    html += '<div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.2)">';
+    html += '<div class="smeta-label" style="margin-bottom:4px">General Comments</div>';
+    html += '<div style="font-size:14px;line-height:1.5;color:#fff">' + h(hd.notes) + '</div></div>';
+  }
+  html += '</div>';
 
   if (!equipment.length) {
     html += '<div class="empty-state"><div class="icon">📋</div><p>No equipment has been added yet.</p></div>';
   } else {
-    equipment.forEach(eq => {
-      html +=
-        '<div class="summary-eq-card">' +
-          '<div class="summary-eq-header">' +
-            '<div class="eq-type-badge ' + badgeClass(eq.type) + '" style="width:42px;height:42px;font-size:8px">' +
-              '<span style="font-size:17px">' + typeIcon(eq.type) + '</span>' +
-              '<span>' + h(eq.type) + '</span>' +
-            '</div>' +
-            '<div>' +
-              '<h3>' + h(eq.name) + '</h3>' +
-              '<div style="font-size:12px;color:var(--muted)">' + ([eq.location].filter(Boolean).map(h).join(' · ') || '') + '</div>' +
-            '</div>' +
-          '</div>' +
-          '<div class="section-divider">Compressor</div>' +
-          '<div class="summary-data-grid">' +
-            sf('Brand', eq.compBrand) + sf('Model', eq.compModel) +
-          '</div>' +
-          '<div class="section-divider">Electrical</div>' +
-          '<div class="summary-data-grid">' +
-            sf('Voltage', eq.voltage) + sf('RLA', eq.rla ? eq.rla + 'A' : '') + sf('LRA', eq.lra ? eq.lra + 'A' : '') +
-          '</div>' +
-          (eq.notes ? '<div class="summary-notes"><div class="sfield-label" style="margin-bottom:4px">Field Notes</div><p>' + h(eq.notes) + '</p></div>' : '') +
-        '</div>';
-    });
+    // Equipment cards
+    for (var i = 0; i < equipment.length; i++) {
+      var eq = equipment[i];
+      html += '<div class="summary-eq-card">';
+      html += '<div class="summary-eq-header">';
+      html += '<div class="eq-type-badge ' + badgeClass(eq.type) + '" style="width:42px;height:42px;font-size:8px">';
+      html += '<span style="font-size:17px">' + typeIcon(eq.type) + '</span>';
+      html += '<span>' + h(eq.type) + '</span></div>';
+      html += '<div><h3>' + h(eq.name) + '</h3>';
+      if (eq.location) html += '<div style="font-size:12px;color:var(--muted)">' + h(eq.location) + '</div>';
+      html += '</div></div>';
+      html += '<div class="section-divider">Compressor</div>';
+      html += '<div class="summary-data-grid">';
+      html += sf('Brand', eq.compBrand) + sf('Model', eq.compModel);
+      html += '</div>';
+      html += '<div class="section-divider">Electrical</div>';
+      html += '<div class="summary-data-grid">';
+      html += sf('Voltage', eq.voltage) + sf('RLA', eq.rla ? eq.rla + 'A' : '') + sf('LRA', eq.lra ? eq.lra + 'A' : '');
+      html += '</div>';
+      if (eq.notes) {
+        html += '<div class="summary-notes"><div class="sfield-label" style="margin-bottom:4px">Field Notes</div>';
+        html += '<p>' + h(eq.notes) + '</p></div>';
+      }
+      html += '</div>';
+    }
 
-    const withPhotos = equipment.filter(eq => eq.photos && eq.photos.length);
+    // Photos section
+    var withPhotos = equipment.filter(function(eq) { return eq.photos && eq.photos.length; });
     if (withPhotos.length) {
       html += '<div class="photos-summary-section"><h3>📷 Photo Documentation</h3>';
-      withPhotos.forEach(eq => {
-        html += '<div class="photo-group"><div class="photo-group-title">' + h(eq.name) + ' — ' + h(eq.type) + '</div>' +
-          '<div class="photo-summary-grid">' +
-          eq.photos.map(p =>
-            '<div class="photo-summary-item"><img src="' + p.dataUrl + '" alt="' + h(p.label) + '"><div class="ps-label">' + h(p.label) + '</div></div>'
-          ).join('') +
-          '</div></div>';
-      });
+      for (var j = 0; j < withPhotos.length; j++) {
+        var weq = withPhotos[j];
+        html += '<div class="photo-group">';
+        html += '<div class="photo-group-title">' + h(weq.name) + ' — ' + h(weq.type) + '</div>';
+        html += '<div class="photo-summary-grid">';
+        for (var k = 0; k < weq.photos.length; k++) {
+          var p = weq.photos[k];
+          html += '<div class="photo-summary-item">';
+          html += '<img src="' + p.dataUrl + '" alt="' + h(p.label) + '">';
+          html += '<div class="ps-label">' + h(p.label) + '</div></div>';
+        }
+        html += '</div></div>';
+      }
       html += '</div>';
     }
   }
@@ -511,11 +555,15 @@ function h(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-['h-job','h-date','h-auditor','h-notes'].forEach(id => {
-  const el = document.getElementById(id);
-  el.addEventListener('change', () => persist());
-  el.addEventListener('input', () => persist());
-});
+// Auto-save header fields
+var headerFields = ['h-job', 'h-date', 'h-auditor', 'h-notes'];
+for (var i = 0; i < headerFields.length; i++) {
+  (function(id) {
+    var el = document.getElementById(id);
+    el.addEventListener('change', function() { persist(); });
+    el.addEventListener('input', function() { persist(); });
+  })(headerFields[i]);
+}
 </script>
 </body>
 </html>
