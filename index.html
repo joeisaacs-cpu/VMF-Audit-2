@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<title>VFM Audit Tool</title>
+<title>VMF Audit Tool</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -138,10 +138,15 @@
     .summary-job-header { background: #1a2f4e !important; }
     .summary-eq-card, .photos-summary-section { background: #fff; border-color: #ccc; break-inside: avoid; }
     .section-divider { color: #1a2f4e; border-top-color: #ddd; }
+    .summary-eq-header div { color: #111 !important; }
+    [style*='color:var(--accent)'] { color: #e8500a !important; }
+    [style*='color:var(--muted)'] { color: #555 !important; }
     .badge-cooler { background: #dff5ec; color: #1a6b45; border-color: #1a6b45; }
     .badge-freezer { background: #ddeaf8; color: #1a4a8f; border-color: #1a4a8f; }
     .badge-hvac { background: #fdeede; color: #b83d08; border-color: #b83d08; }
-    .photo-summary-grid { grid-template-columns: repeat(4, 1fr); }
+    .photo-summary-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+    .photo-summary-item img { aspect-ratio: 4/3 !important; }
+    .photo-group { margin-bottom: 32px; }
     .btn { display: none !important; }
   }
 </style>
@@ -149,7 +154,7 @@
 <body>
 
 <div class="app-header">
-  <h1>⚙ VFM Audit Tool</h1>
+  <h1>⚙ VMF Audit Tool</h1>
   <span class="header-meta" id="hdr-meta">0 units</span>
 </div>
 
@@ -200,7 +205,8 @@
           <label>Location</label>
           <select id="f-location">
             <option value="">-- Select --</option>
-            <option value="Pad Mount">Pad Mount</option>
+            <option value="Outdoor Pad">Outdoor Pad</option>
+            <option value="Mechanical Room">Mechanical Room</option>
             <option value="Roof">Roof</option>
           </select>
         </div>
@@ -259,7 +265,7 @@
 <div id="screen-summary" class="screen">
   <div class="container">
     <div id="summary-content"></div>
-    <button class="btn btn-primary no-print" onclick="window.print()">🖨 Print / Save as PDF</button>
+    <button class="btn btn-primary no-print" onclick="printReport()">🖨 Print / Save as PDF</button>
     <button class="btn btn-ghost no-print" onclick="showList()">← Back</button>
   </div>
 </div>
@@ -484,7 +490,7 @@ function renderSummary() {
 
   // Header block
   html += '<div class="summary-job-header">';
-  html += '<h2>' + h(hd.job || 'VFM Audit') + '</h2>';
+  html += '<h2>' + h(hd.job || 'VMF Audit') + '</h2>';
   html += '<div class="summary-meta-grid">';
   html += '<div><div class="smeta-label">Date</div><div class="smeta-value">' + h(fmtDate(hd.date) || '—') + '</div></div>';
   html += '<div><div class="smeta-label">Audited By</div><div class="smeta-value">' + h(hd.auditor || '—') + '</div></div>';
@@ -509,8 +515,12 @@ function renderSummary() {
       html += '<span style="font-size:17px">' + typeIcon(eq.type) + '</span>';
       html += '<span>' + h(eq.type) + '</span></div>';
       html += '<div><h3>' + h(eq.name) + '</h3>';
-      if (eq.location) html += '<div style="font-size:12px;color:var(--muted)">' + h(eq.location) + '</div>';
+      if (eq.location) html += '<div style="font-size:13px;color:var(--accent);font-weight:600">' + h(eq.location) + '</div>';
       html += '</div></div>';
+      html += '<div class="section-divider">Unit Info</div>';
+      html += '<div class="summary-data-grid">';
+      html += sf('Location', eq.location);
+      html += '</div>';
       html += '<div class="section-divider">Compressor</div>';
       html += '<div class="summary-data-grid">';
       html += sf('Brand', eq.compBrand) + sf('Model', eq.compModel);
@@ -553,6 +563,14 @@ function renderSummary() {
 function h(s) {
   if (!s) return '';
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function printReport() {
+  var jobName = document.getElementById('h-job').value.trim() || 'VMF Audit';
+  document.title = jobName + ' - VMF Audit';
+  window.print();
+  // Reset title after print dialog closes
+  setTimeout(function() { document.title = 'VMF Audit Tool'; }, 2000);
 }
 
 // Auto-save header fields
