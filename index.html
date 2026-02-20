@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>Equipment Survey</title>
+<title>VFM Audit Tool</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -161,7 +161,7 @@
 <body>
 
 <div class="app-header">
-  <h1>⚙ Equip Survey</h1>
+  <h1>⚙ VFM Audit Tool</h1>
   <span class="header-meta" id="hdr-meta">0 units</span>
 </div>
 
@@ -451,7 +451,7 @@ function sf(label, value) { return '<div><div class="sfield-label">' + label + '
 function renderSummary() {
   const hd = surveyHeader;
   let html = '<div class="summary-job-header">' +
-    '<h2>' + h(hd.job || 'Equipment Survey') + '</h2>' +
+    '<h2>' + h(hd.job || 'VFM Audit') + '</h2>' +
     '<div class="summary-meta-grid">' +
       '<div><div class="smeta-label">Date</div><div class="smeta-value">' + h(fmtDate(hd.date) || '—') + '</div></div>' +
       '<div><div class="smeta-label">Audited By</div><div class="smeta-value">' + h(hd.auditor || '—') + '</div></div>' +
@@ -478,8 +478,7 @@ function renderSummary() {
           '</div>' +
           '<div class="section-divider">Compressor</div>' +
           '<div class="summary-data-grid">' +
-            sf('Brand', eq.compBrand) + sf('Model', eq.compModel) + 
-            
+            sf('Brand', eq.compBrand) + sf('Model', eq.compModel) +
           '</div>' +
           '<div class="section-divider">Electrical</div>' +
           '<div class="summary-data-grid">' +
